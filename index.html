@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Brewery Credit Union | Strategic Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        // BCU Brand Color Palette (from brewerycu.com)
+                        primary: '#A73439', // BCU Burgundy - primary brand color
+                        'on-primary': '#FFFFFF',
+                        'primary-container': '#FDEAEB', // Light burgundy tint
+                        'on-primary-container': '#5C1D20',
+                        secondary: '#1863DC', // BCU Blue - interactive elements
+                        'on-secondary': '#FFFFFF',
+                        'secondary-container': '#E3EEFB', // Light blue tint
+                        'on-secondary-container': '#0D3A7A',
+                        tertiary: '#2E7D32', // Success Green
+                        'on-tertiary': '#FFFFFF',
+                        'tertiary-container': '#C8E6C9',
+                        'on-tertiary-container': '#1B5E20',
+                        error: '#B3261E',
+                        'on-error': '#FFFFFF',
+                        'error-container': '#F9DEDC',
+                        'on-error-container': '#410E0B',
+                        background: '#FFFFFF',
+                        'on-background': '#212121', // BCU dark gray text
+                        surface: '#FFFFFF',
+                        'on-surface': '#212121',
+                        'surface-variant': '#F4F4F4', // BCU light gray
+                        'on-surface-variant': '#5F5F5F',
+                        outline: '#9E9E9E',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #212121;
+        }
+
+        .m3-surface-1 {
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 1px 3px 1px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+        .m3-surface-1:hover {
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 2px 6px 2px rgba(0,0,0,0.1);
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .expanded .chevron-icon {
+            transform: rotate(90deg);
+        }
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 1.5rem;
+        }
+        .expanded .step-content {
+            max-height: 3000px;
+        }
+
+        .cascade-stage {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .cascade-stage.active {
+            background-color: #A73439 !important;
+            color: #FFFFFF !important;
+            border-color: #A73439 !important;
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(167, 52, 57, 0.3) !important;
+        }
+
+        .cascade-stage.active h3 {
+            color: #FFFFFF !important;
+        }
+
+        .cascade-stage.active .text-sm {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .cascade-stage:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .detail-content {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .detail-content.active {
+            opacity: 1;
+        }
+
+        .cascade-accordion-item {
+            border-bottom: 1px solid #F0E8DF;
+        }
+
+        .cascade-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .cascade-accordion-content.open {
+            max-height: 800px;
+        }
+
+        .status-completed {
+            background-color: #C8E6C9;
+            color: #1B5E20;
+        }
+        .status-current {
+            background-color: #FFECD9;
+            color: #3D1F00;
+        }
+        .status-upcoming {
+            background-color: #E8E0D5;
+            color: #1A150D;
+        }
+
+        .process-step-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        }
+
+        .process-step-content.active {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        .process-step-header.active .step-circle {
+            background-color: #A73439 !important;
+            border-color: rgba(167, 52, 57, 0.5) !important;
+        }
+
+        .process-step-header.active .step-icon {
+            color: #FFFFFF !important;
+        }
+
+        @media (max-width: 640px) {
+            .cascade-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Quote highlight */
+        .quote-highlight {
+            border-left: 4px solid #A73439;
+            background: linear-gradient(90deg, rgba(167, 52, 57, 0.08) 0%, transparent 100%);
+        }
+
+        /* Active navigation state */
+        .nav-button.active {
+            color: #A73439 !important;
+            background-color: rgba(167, 52, 57, 0.1) !important;
+        }
+
+        /* Mobile scroll snap for nav */
+        @media (max-width: 767px) {
+            nav {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Combined Header with Navigation -->
+    <header class="bg-surface/95 backdrop-blur-lg sticky top-0 z-50 border-b border-surface-variant/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Desktop: Single row with logo and nav -->
+            <div class="hidden md:flex items-center justify-between py-1">
+                <div class="flex items-center space-x-4">
+                    <img src="brewerycu_logo.png" alt="Brewery Credit Union Logo" class="h-[140px]">
+                    <div class="border-l border-outline/30 pl-4">
+                        <span class="font-display text-sm font-medium text-on-surface-variant">Playing to Win</span>
+                        <span class="text-sm text-on-surface-variant/70 block">Strategy Roadmap</span>
+                    </div>
+                </div>
+                <nav class="flex items-center gap-1">
+                    <button data-target="context" class="nav-button px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer">Engagement</button>
+                    <button data-target="timeline" class="nav-button px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer">Roadmap</button>
+                    <button data-target="journey" class="nav-button px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer">Sessions</button>
+                    <button data-target="cascade" class="nav-button px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer">Framework</button>
+                </nav>
+            </div>
+
+            <!-- Mobile: Stacked layout -->
+            <div class="md:hidden">
+                <div class="flex items-center justify-between py-1">
+                    <img src="brewerycu_logo.png" alt="Brewery Credit Union Logo" class="h-[100px]">
+                    <span class="font-display text-sm font-medium text-on-surface-variant">Strategy Roadmap</span>
+                </div>
+                <nav class="flex items-center justify-between pb-3 gap-1 overflow-x-auto">
+                    <button data-target="context" class="nav-button px-3 py-1.5 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer whitespace-nowrap">Engagement</button>
+                    <button data-target="timeline" class="nav-button px-3 py-1.5 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer whitespace-nowrap">Roadmap</button>
+                    <button data-target="journey" class="nav-button px-3 py-1.5 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer whitespace-nowrap">Sessions</button>
+                    <button data-target="cascade" class="nav-button px-3 py-1.5 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-primary-container/30 transition-all cursor-pointer whitespace-nowrap">Framework</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div id="hero" class="relative bg-surface-variant/20">
+            <div class="max-w-4xl mx-auto text-center py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+                <p class="font-display text-base font-semibold text-primary tracking-wide uppercase">Our Strategic Journey</p>
+                <h1 class="mt-2 text-4xl sm:text-5xl font-bold font-display text-on-surface tracking-tight">Making BCU's Strategy Explicit</h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-on-surface-variant">
+                    Over the next six months, we'll surface the strategy BCU is already operating with, build a shared language for strategic decisions, and identify opportunities to strengthen how you win with members.
+                </p>
+
+                <!-- YouTube Video Embed -->
+                <div class="mt-8 max-w-2xl mx-auto">
+                    <div class="relative aspect-video rounded-xl overflow-hidden shadow-lg">
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/I_JnjK8sGNU?start=259&rel=0&modestbranding=1"
+                            title="Roger Martin - A Plan Is Not a Strategy"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            loading="lazy"
+                            class="absolute inset-0 w-full h-full">
+                        </iframe>
+                    </div>
+                    <p class="mt-3 text-base text-on-surface-variant">Roger Martin explains why a plan is not a strategy</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Engagement Section -->
+        <div id="context" class="bg-primary-container/10 py-12 sm:py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold font-display text-on-surface">The Engagement</h2>
+                    <p class="mt-2 text-lg text-on-surface-variant">Six months of strategic clarity</p>
+                </div>
+
+                <div class="bg-surface rounded-xl p-6 m3-surface-1 mb-8">
+                    <p class="text-base text-on-surface-variant mb-6">Every organization has a strategy, whether it's written down or not. BCU has a strategy embedded in how you make decisions every day. Our job over the next six months is to define it clearly, examine whether it's the right one, and ensure you have the capacity to execute it.</p>
+                    <p class="text-base text-on-surface-variant">Each quarter follows an alternating pattern: coaching call, workshop, coaching call, workshop, coaching call, workshop. This rhythm maintains momentum without overwhelming.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-4 text-base">
+                    <div class="text-center p-5 bg-surface rounded-xl m3-surface-1">
+                        <p class="text-3xl font-bold text-secondary">6</p>
+                        <p class="text-on-surface font-medium">Coaching Calls</p>
+                        <p class="text-sm text-on-surface-variant">Kristin 1:1</p>
+                    </div>
+                    <div class="text-center p-5 bg-surface rounded-xl m3-surface-1">
+                        <p class="text-3xl font-bold text-primary">6</p>
+                        <p class="text-on-surface font-medium">Team Workshops</p>
+                        <p class="text-sm text-on-surface-variant">Kristin, Tabitha, Matthew</p>
+                    </div>
+                    <div class="text-center p-5 bg-surface rounded-xl m3-surface-1">
+                        <p class="text-3xl font-bold text-tertiary">1</p>
+                        <p class="text-on-surface font-medium">Board Session</p>
+                        <p class="text-sm text-on-surface-variant">30-min Progress Review</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: 6-Month Timeline -->
+        <div id="timeline" class="bg-surface-variant/20 py-16 sm:py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold font-display tracking-tight text-on-surface sm:text-4xl">Your 6-Month Roadmap</h2>
+                    <p class="mt-4 text-lg text-on-surface-variant">Phase 1: January - June 2026</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Q1 -->
+                    <div class="bg-surface rounded-xl p-6 m3-surface-1">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-container text-on-primary-container mr-3">Q1: Jan - Mar</span>
+                            <h3 class="font-display font-bold text-lg text-on-surface">Strategy Definition</h3>
+                        </div>
+                        <p class="text-on-surface-variant mb-4"><strong>Goal:</strong> Define Brewery CU's current strategy</p>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-surface-variant/30 rounded-lg p-4">
+                                <h4 class="font-medium text-base text-on-surface mb-2">Outcomes</h4>
+                                <ul class="text-base text-on-surface-variant space-y-1">
+                                    <li>Understanding of core concepts behind strategy, its development, and its management</li>
+                                    <li>A clear, shared one-page statement of BCU's current strategy</li>
+                                </ul>
+                            </div>
+                            <div class="bg-surface-variant/30 rounded-lg p-4">
+                                <h4 class="font-medium text-base text-on-surface mb-2">Workshops</h4>
+                                <ul class="text-base text-on-surface-variant space-y-1">
+                                    <li><strong>Jan:</strong> What is Strategy? (Core concepts & framework)</li>
+                                    <li><strong>Feb:</strong> Strategy Definition (Define BCU's current strategy)</li>
+                                    <li><strong>Mar:</strong> Project Inventory (Assess alignment)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-surface rounded-xl p-6 m3-surface-1">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-secondary-container text-on-secondary-container mr-3">Q2: Apr - Jun</span>
+                            <h3 class="font-display font-bold text-lg text-on-surface">Capacity & Capability Mapping</h3>
+                        </div>
+                        <p class="text-on-surface-variant mb-4"><strong>Goal:</strong> Balance strategic opportunities with operational responsibilities</p>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-surface-variant/30 rounded-lg p-4">
+                                <h4 class="font-medium text-base text-on-surface mb-2">Outcomes</h4>
+                                <ul class="text-base text-on-surface-variant space-y-1">
+                                    <li>Determine whether BCU has the right people in the right roles doing the right work</li>
+                                    <li>Understand BCU's realistic capacity</li>
+                                    <li>Validate strategic direction</li>
+                                </ul>
+                            </div>
+                            <div class="bg-surface-variant/30 rounded-lg p-4">
+                                <h4 class="font-medium text-base text-on-surface mb-2">Workshops</h4>
+                                <ul class="text-base text-on-surface-variant space-y-1">
+                                    <li><strong>Apr:</strong> Capability Mapping (Gap analysis)</li>
+                                    <li><strong>May:</strong> Prioritization Framework (Trade-offs)</li>
+                                    <li><strong>Jun:</strong> Strategic Bets & Validation (Testing)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Board Update -->
+                    <div class="bg-tertiary-container/20 rounded-xl p-6 border border-tertiary-container/40">
+                        <div class="flex items-center mb-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-tertiary-container text-on-tertiary-container mr-3">May/Jun</span>
+                            <h3 class="font-display font-bold text-lg text-on-surface">Board Progress Update</h3>
+                        </div>
+                        <p class="text-on-surface-variant">30-minute session with the board: progress summary, objective feedback on capability gaps, and key learnings.</p>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+
+        <!-- Section: Our Sessions (Journey) -->
+        <div id="journey" class="bg-surface py-16 sm:py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold font-display tracking-tight text-on-surface sm:text-4xl">Our Sessions</h2>
+                    <p class="mt-4 text-lg text-on-surface-variant">Click each session to see details and outcomes. Coaching calls and workshops alternate throughout the engagement.</p>
+                </div>
+
+                <div id="journey-steps-container" class="space-y-4">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: The Framework (Playing to Win) -->
+        <div id="cascade" class="bg-surface-variant/20 py-16 sm:py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold font-display tracking-tight text-on-surface sm:text-4xl">The Framework</h2>
+                    <p class="mt-4 text-lg text-on-surface-variant max-w-3xl mx-auto">
+                        Playing to Win is built on five integrated questions. These questions cascade from top to bottom, and each choice constrains and reinforces the others.
+                    </p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <div class="space-y-6">
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center text-lg font-bold">1</div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-on-surface text-lg">What is our winning aspiration?</p>
+                                <p class="text-on-surface-variant text-base mt-1">What does winning look like for BCU?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center text-lg font-bold">2</div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-on-surface text-lg">Where will we play?</p>
+                                <p class="text-on-surface-variant text-base mt-1">Which members, products, geography, and channels?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center text-lg font-bold">3</div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-on-surface text-lg">How will we win?</p>
+                                <p class="text-on-surface-variant text-base mt-1">Why will members choose BCU over alternatives?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary/70 text-on-primary rounded-full flex items-center justify-center text-lg font-bold">4</div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-on-surface text-lg">What capabilities must be in place?</p>
+                                <p class="text-on-surface-variant text-base mt-1">What must BCU be excellent at?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary/50 text-on-primary rounded-full flex items-center justify-center text-lg font-bold">5</div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-on-surface text-lg">What management systems do we need?</p>
+                                <p class="text-on-surface-variant text-base mt-1">What measures and processes reinforce the strategy?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Two-Panel Layout -->
+                <div class="hidden md:grid md:grid-cols-5 gap-8 mt-12">
+                    <div class="col-span-2">
+                        <div id="cascade-navigator" class="space-y-4">
+                        </div>
+                    </div>
+
+                    <div class="col-span-3">
+                        <div id="cascade-detail-view" class="bg-surface/80 rounded-xl p-6 sticky top-20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Accordion Layout -->
+                <div class="md:hidden mt-8">
+                    <div id="cascade-accordion" class="space-y-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-variant/20">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-base text-on-surface-variant">
+            DXN | Brewery Credit Union Strategic Engagement 2026
+        </div>
+    </footer>
+
+    <script>
+        // Data for the cascade visualization
+        const cascadeData = [
+            {
+                id: 'aspiration',
+                title: 'What is our winning aspiration?',
+                content: 'What does winning look like for BCU with members and against alternatives?',
+                details: [
+                    'Plays to <strong>win</strong> with members, not just to survive or "compete"',
+                    'Has a competitive dimension: Who are you winning against? (Payday lenders? Banks?)',
+                    'Starts with member value, not internal financial targets',
+                    'States winning in concrete terms that inspire the team',
+                    'Anchors every other strategic choice in the cascade'
+                ],
+                bcuContext: 'BCU\'s potential winning aspiration: "Put payday lenders out of business." Winning means members never need predatory alternatives.'
+            },
+            {
+                id: 'where',
+                title: 'Where will we play?',
+                content: 'Which members, products, geography, and channels will we prioritize?',
+                details: [
+                    'Names the member segments you will serve (and those you won\'t)',
+                    'Specifies the products & services you\'ll offer them',
+                    'Defines your geographic focus (CDFI zone? Broader area?)',
+                    'Selects the delivery channels (branches, digital, partners)',
+                    'Clarifies what you\'re <strong>not</strong> doing'
+                ],
+                bcuContext: 'BCU\'s current "where": Credit-blemished members in the CDFI zone, with Fast Cash and Second Chance Checking as strategic products.'
+            },
+            {
+                id: 'how',
+                title: 'How will we win?',
+                content: 'Why will members choose BCU over alternatives?',
+                details: [
+                    'Describes your sustainable competitive edge',
+                    'Shows how you deliver superior value versus alternatives',
+                    'Two fundamental approaches: low cost OR differentiation',
+                    'BCU is clearly <strong>differentiation</strong>: you don\'t win on rates',
+                    'Explains why the advantage will last over time'
+                ],
+                bcuContext: '"Say yes when others say no, and don\'t judge while doing so." This is how BCU wins through differentiation, not cost.'
+            },
+            {
+                id: 'capabilities',
+                title: 'What capabilities must be in place?',
+                content: 'What must BCU be excellent at to make the strategy work?',
+                details: [
+                    'Lists the 4-5 critical capabilities BCU must master',
+                    'Directly enable the where-to-play and how-to-win choices',
+                    'Are distinctive versus peers and hard to copy',
+                    'Reinforce one another across the credit union',
+                    'May reveal gaps between "what we need" and "what we have"'
+                ],
+                bcuContext: 'Potential BCU capabilities: Underwriting non-traditional borrowers, member relationships, fast decision-making, credit counseling.'
+            },
+            {
+                id: 'systems',
+                title: 'What management systems do we need?',
+                content: 'What measures, processes, and structures reinforce the strategy?',
+                details: [
+                    'Identifies the key systems (planning, budgeting, talent, feedback) that reinforce capabilities',
+                    'Embeds strategic choices in everyday decisions',
+                    'Provides metrics that track progress toward winning',
+                    'Aligns resource allocation and incentives with priorities',
+                    'Enables fast learning and course correction'
+                ],
+                bcuContext: 'Current gap: No branch profitability data, goals without clear accountability, member acquisition metrics unclear.'
+            }
+        ];
+
+        // Journey/Session data - BCU's structure: alternating coaching calls and workshops
+        const journeyStepsData = [
+            // Q1: STRATEGY DEFINITION
+            {
+                id: 1,
+                title: "Coaching Call: Onboarding & Orientation",
+                status: "completed",
+                session_date: "January 2026",
+                quarter: "Q1",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Review engagement goals and establish coaching rhythm",
+                    "Orient to Playing to Win framework",
+                    "Discuss time commitment and team dynamics"
+                ],
+                whyThisMatters: "Sets the foundation for everything that follows. Kristin gets a head start on PTW concepts before bringing the full team together.",
+                icon: 'C1'
+            },
+            {
+                id: 2,
+                title: "Workshop 1: What is Strategy?",
+                status: "completed",
+                session_date: "January 21, 2026 | 90 minutes",
+                quarter: "Q1",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Build shared understanding of strategy concepts and introduce the 5-question strategy cascade",
+                outcomes: [
+                    "Distinguish 'playing to win' from 'playing to play'",
+                    "Master the 5-question strategy cascade framework",
+                    "Practice strategic thinking with external examples"
+                ],
+                homework: "Draft answers to the 5 questions for BCU as it operates TODAY. Not what you wish it was, but what it actually is right now. Complete independently.",
+                whyThisMatters: "Strategy work must start with a common language. Without shared concepts, teams talk past each other.",
+                icon: 'W1'
+            },
+            {
+                id: 3,
+                title: "Coaching Call: Integration & Planning",
+                status: "current",
+                session_date: "February 2026",
+                quarter: "Q1",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Debrief Workshop 1 insights",
+                    "Discuss team dynamics and emerging questions",
+                    "Prepare for strategy definition work"
+                ],
+                whyThisMatters: "Creates space to process what surfaced in the workshop and prepare for the more intensive strategy definition work ahead.",
+                icon: 'C2'
+            },
+            {
+                id: 4,
+                title: "Workshop 2: Strategy Definition",
+                status: "upcoming",
+                session_date: "February 2026 | 90 minutes",
+                quarter: "Q1",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Draft BCU's strategy on a page",
+                outcomes: [
+                    "Understand how to use the 5-question framework",
+                    "Articulate and refine Brewery's current strategy",
+                    "Begin to explore and identify trade-offs"
+                ],
+                whyThisMatters: "This is where the real work begins. By comparing each person's independent answers, we see where you naturally align and where you see BCU differently.",
+                icon: 'W2'
+            },
+            {
+                id: 5,
+                title: "Coaching Call: Refinement & Next Steps",
+                status: "upcoming",
+                session_date: "March 2026",
+                quarter: "Q1",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Finalize current strategy statement",
+                    "Discuss what's working and what's not",
+                    "Identify priority concerns for Q2"
+                ],
+                whyThisMatters: "Ensures the strategy statement reflects actual alignment and prepares for the transition to project inventory work.",
+                icon: 'C3'
+            },
+            {
+                id: 6,
+                title: "Workshop 3: Project Inventory",
+                status: "upcoming",
+                session_date: "March 2026 | 90 minutes",
+                quarter: "Q1",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Map current initiatives and assess strategic alignment",
+                outcomes: [
+                    "Assess alignment with current strategy",
+                    "Identify capacity gaps and overcommitments"
+                ],
+                deliverable: "One-page BCU Strategy Statement (Q1 Deliverable)",
+                whyThisMatters: "Most organizations are running more projects than they can execute well. This session creates visibility into what's actually happening and how it connects to strategy.",
+                icon: 'W3'
+            },
+            // Q2: CAPACITY & CAPABILITY MAPPING
+            {
+                id: 7,
+                title: "Coaching Call: Reflections & Orientation",
+                status: "upcoming",
+                session_date: "April 2026",
+                quarter: "Q2",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Reflect on Q1 learnings",
+                    "Orient to capacity and capability work",
+                    "Discuss personnel and organizational challenges"
+                ],
+                whyThisMatters: "Transitions from 'what is our strategy' to 'can we actually execute it.' This is often where harder conversations about people and roles begin.",
+                icon: 'C4'
+            },
+            {
+                id: 8,
+                title: "Workshop 4: Capability Mapping",
+                status: "upcoming",
+                session_date: "April 2026 | 90 minutes",
+                quarter: "Q2",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Map required capabilities against current capabilities",
+                outcomes: [
+                    "Understand: What are we really great at doing?",
+                    "What activities are critical to bringing our where-to-play and how-to-win choices to life?",
+                    "What capabilities do we need (people, systems, processes)?"
+                ],
+                whyThisMatters: "Strategy is only as good as your ability to execute it. This session gets honest about what BCU needs to be great at, and where you're falling short.",
+                icon: 'W4'
+            },
+            {
+                id: 9,
+                title: "Coaching Call: Action Planning",
+                status: "upcoming",
+                session_date: "May 2026",
+                quarter: "Q2",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Develop plans to address capability gaps",
+                    "Discuss difficult personnel decisions",
+                    "Work through prioritization challenges"
+                ],
+                whyThisMatters: "The coaching call is where we can have the harder conversations that may not be appropriate for the full team workshop.",
+                icon: 'C5'
+            },
+            {
+                id: 10,
+                title: "Workshop 5: Prioritization Framework",
+                status: "upcoming",
+                session_date: "May 2026 | 90 minutes",
+                quarter: "Q2",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Build framework for saying no (and yes!)",
+                outcomes: [
+                    "Shared criteria for evaluating opportunities against strategy",
+                    "Practice applying the framework to real decisions",
+                    "Clarity on capacity limits and trade-offs"
+                ],
+                whyThisMatters: "The hardest part of strategy is choosing what NOT to do. This session builds the muscle for making difficult trade-offs and sticking to them.",
+                icon: 'W5'
+            },
+            {
+                id: 11,
+                title: "Coaching Call: Validation Systems",
+                status: "upcoming",
+                session_date: "June 2026",
+                quarter: "Q2",
+                sessionType: "coaching",
+                format: "1:1 with Kristin",
+                goals: [
+                    "Design systems for testing strategic bets",
+                    "Build feedback loops",
+                    "Prepare for board update"
+                ],
+                whyThisMatters: "Prepares Kristin to lead the board update and ensures the team has systems in place to validate strategic direction going forward.",
+                icon: 'C6'
+            },
+            {
+                id: 12,
+                title: "Workshop 6: Strategic Bets & Validation",
+                status: "upcoming",
+                session_date: "June 2026 | 90 minutes",
+                quarter: "Q2",
+                sessionType: "workshop",
+                format: "90-minute workshop (Kristin, Tabitha, Matthew)",
+                workshopGoal: "Learn to make progress through small, testable bets",
+                outcomes: [
+                    "Understanding how to test strategic assumptions before committing",
+                    "Identified bets with clear 'we'll know it's working if...' criteria",
+                    "A rhythm for checking progress and course-correcting"
+                ],
+                deliverable: "Capacity Assessment + Prioritization Framework (Q2 Deliverable)",
+                whyThisMatters: "Strategy isn't about predicting the future; it's about improving your odds. This session teaches how to test strategic assumptions before betting big.",
+                icon: 'W6'
+            },
+            {
+                id: 13,
+                title: "Board Progress Update",
+                status: "upcoming",
+                session_date: "May or June 2026",
+                quarter: "Q2",
+                sessionType: "board",
+                format: "30-minute session with Board",
+                goals: [
+                    "Progress summary from Kristin",
+                    "Objective feedback from Brent on capability gaps",
+                    "Key learnings and recommendations"
+                ],
+                whyThisMatters: "Keeps the board informed and aligned, and provides external validation of the work being done.",
+                icon: 'B'
+            }
+        ];
+
+        // Render cascade navigator (desktop)
+        function renderCascadeNavigator() {
+            const container = document.getElementById('cascade-navigator');
+            if (!container) return;
+
+            let html = '';
+            cascadeData.forEach((item, index) => {
+                html += `
+                    <div class="cascade-stage bg-surface p-4 rounded-xl m3-surface-1 ${index === 0 ? 'active' : ''}"
+                         data-stage="${item.id}"
+                         onclick="selectCascadeStage('${item.id}')">
+                        <h3 class="font-display font-semibold text-base text-on-surface">${item.title}</h3>
+                        <p class="text-sm text-on-surface-variant mt-1">${item.content}</p>
+                    </div>
+                `;
+                if (index < cascadeData.length - 1) {
+                    html += `
+                        <div class="flex justify-center">
+                            <svg class="w-6 h-6 text-outline/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
+                        </div>
+                    `;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        // Render cascade detail view
+        function renderCascadeDetail(stageId) {
+            const container = document.getElementById('cascade-detail-view');
+            if (!container) return;
+
+            const stage = cascadeData.find(s => s.id === stageId);
+            if (!stage) return;
+
+            container.innerHTML = `
+                <h3 class="font-display font-bold text-xl text-on-surface mb-4">${stage.title}</h3>
+                <p class="text-on-surface-variant text-base mb-6">${stage.content}</p>
+                <h4 class="font-medium text-base text-on-surface mb-3">Key Elements:</h4>
+                <ul class="space-y-2 mb-6">
+                    ${stage.details.map(d => `<li class="flex items-start"><span class="text-primary mr-2">-</span><span class="text-on-surface-variant text-base">${d}</span></li>`).join('')}
+                </ul>
+                ${stage.bcuContext ? `
+                    <div class="quote-highlight rounded-r-lg p-4 mt-4">
+                        <p class="text-base font-medium text-on-surface">BCU Context:</p>
+                        <p class="text-base text-on-surface-variant mt-1">${stage.bcuContext}</p>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        // Select cascade stage
+        function selectCascadeStage(stageId) {
+            document.querySelectorAll('.cascade-stage').forEach(el => {
+                el.classList.remove('active');
+            });
+            const selected = document.querySelector(`.cascade-stage[data-stage="${stageId}"]`);
+            if (selected) selected.classList.add('active');
+            renderCascadeDetail(stageId);
+        }
+
+        // Render mobile cascade accordion
+        function renderCascadeAccordion() {
+            const container = document.getElementById('cascade-accordion');
+            if (!container) return;
+
+            let html = '';
+            cascadeData.forEach((item, index) => {
+                html += `
+                    <div class="cascade-accordion-item bg-surface rounded-xl m3-surface-1 overflow-hidden">
+                        <button class="w-full p-4 text-left flex items-center justify-between" onclick="toggleCascadeAccordion(${index})">
+                            <div>
+                                <h3 class="font-display font-semibold text-base text-on-surface">${item.title}</h3>
+                            </div>
+                            <svg class="chevron-icon w-5 h-5 text-on-surface-variant" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <div class="cascade-accordion-content px-4" id="cascade-content-${index}">
+                            <div class="pb-4">
+                                <p class="text-on-surface-variant text-base mb-4">${item.content}</p>
+                                <h4 class="font-medium text-sm text-on-surface mb-2">Key Elements:</h4>
+                                <ul class="space-y-1 mb-4">
+                                    ${item.details.map(d => `<li class="text-sm text-on-surface-variant">- ${d}</li>`).join('')}
+                                </ul>
+                                ${item.bcuContext ? `
+                                    <div class="quote-highlight rounded-r-lg p-3">
+                                        <p class="text-sm text-on-surface-variant">${item.bcuContext}</p>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleCascadeAccordion(index) {
+            const content = document.getElementById(`cascade-content-${index}`);
+            const parent = content.closest('.cascade-accordion-item');
+            const isOpen = content.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.cascade-accordion-content').forEach(el => el.classList.remove('open'));
+            document.querySelectorAll('.cascade-accordion-item').forEach(el => el.classList.remove('expanded'));
+
+            // Open selected if it was closed
+            if (!isOpen) {
+                content.classList.add('open');
+                parent.classList.add('expanded');
+            }
+        }
+
+        // Get status classes
+        function getStatusClasses(status) {
+            switch (status) {
+                case 'completed': return 'bg-tertiary-container text-on-tertiary-container';
+                case 'current': return 'bg-primary-container text-on-primary-container';
+                case 'upcoming': return 'bg-secondary-container text-on-secondary-container';
+                default: return 'bg-surface-variant text-on-surface-variant';
+            }
+        }
+
+        // Get session type styling - intentional color use:
+        // Workshops = Burgundy (primary action/brand)
+        // Coaching = Blue (interactive/supporting)
+        // Board = Green (milestone/success)
+        function getSessionTypeClasses(sessionType) {
+            switch (sessionType) {
+                case 'coaching': return { bg: 'bg-secondary-container', text: 'text-on-secondary-container', icon: 'bg-secondary-container text-secondary' };
+                case 'workshop': return { bg: 'bg-primary-container', text: 'text-on-primary-container', icon: 'bg-primary-container text-primary' };
+                case 'board': return { bg: 'bg-tertiary-container', text: 'text-on-tertiary-container', icon: 'bg-tertiary-container text-tertiary' };
+                default: return { bg: 'bg-surface-variant', text: 'text-on-surface-variant', icon: 'bg-surface-variant text-on-surface-variant' };
+            }
+        }
+
+        function getSessionTypeLabel(sessionType) {
+            switch (sessionType) {
+                case 'coaching': return 'Coaching Call';
+                case 'workshop': return 'Workshop';
+                case 'board': return 'Board Session';
+                default: return 'Session';
+            }
+        }
+
+        // Render journey steps
+        function renderJourneySteps() {
+            const container = document.getElementById('journey-steps-container');
+            if (!container) return;
+
+            journeyStepsData.forEach(step => {
+                const stepElement = document.createElement('div');
+                const typeStyle = getSessionTypeClasses(step.sessionType);
+                stepElement.className = 'bg-surface rounded-2xl m3-surface-1 overflow-hidden';
+                if (step.status === 'current') {
+                    stepElement.classList.add('ring-2', 'ring-primary', 'ring-offset-2', 'ring-offset-background');
+                }
+
+                // For workshops, show workshopGoal and outcomes; for coaching calls, show goals
+                let goalsHtml = '';
+                if (step.workshopGoal) {
+                    goalsHtml = `
+                        <div class="mt-4">
+                            <h4 class="font-medium text-on-surface mb-2">Goal:</h4>
+                            <p class="text-on-surface-variant text-base mb-4">${step.workshopGoal}</p>
+                        </div>`;
+                    if (step.outcomes) {
+                        goalsHtml += `
+                            <div class="mt-4">
+                                <h4 class="font-medium text-on-surface-variant mb-2">Outcomes:</h4>
+                                <ul class="list-disc list-outside ml-5 text-on-surface-variant space-y-1 text-base">
+                                    ${step.outcomes.map(outcome => `<li>${outcome}</li>`).join('')}
+                                </ul>
+                            </div>`;
+                    }
+                } else if (step.goals) {
+                    goalsHtml = `
+                        <div class="mt-4">
+                            <h4 class="font-medium text-on-surface-variant mb-2">Goals:</h4>
+                            <ul class="list-disc list-outside ml-5 text-on-surface-variant space-y-1 text-base">
+                                ${step.goals.map(goal => `<li>${goal}</li>`).join('')}
+                            </ul>
+                        </div>`;
+                }
+
+                let homeworkHtml = step.homework ? `
+                    <div class="mt-4 bg-primary-container/20 rounded-lg p-4 border border-primary-container/40">
+                        <h4 class="text-base font-medium text-on-primary-container mb-1">Homework:</h4>
+                        <p class="text-base text-on-primary-container/80">${step.homework}</p>
+                    </div>` : '';
+
+                let deliverableHtml = step.deliverable ? `
+                    <div class="mt-4 bg-tertiary-container/30 rounded-lg p-4 border border-tertiary-container/60">
+                        <h4 class="text-base font-medium text-on-tertiary-container mb-1">Deliverable:</h4>
+                        <p class="text-base text-on-tertiary-container/90 font-medium">${step.deliverable}</p>
+                    </div>` : '';
+
+                let whyThisMattersHtml = step.whyThisMatters ? `
+                    <div class="mt-4 bg-surface-variant/40 rounded-lg p-4">
+                        <h4 class="text-base font-medium text-on-surface mb-1">Why This Matters:</h4>
+                        <p class="text-base text-on-surface-variant">${step.whyThisMatters}</p>
+                    </div>` : '';
+
+                stepElement.innerHTML = `
+                    <div class="p-6 cursor-pointer step-header" role="button" aria-expanded="false">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <div class="flex items-center justify-center w-12 h-12 rounded-full ${typeStyle.icon} font-bold text-base flex-shrink-0">${step.icon}</div>
+                                    <div>
+                                        <h3 class="text-lg font-bold font-display text-on-surface">${step.title}</h3>
+                                        <p class="text-on-surface-variant text-base">${step.session_date}</p>
+                                    </div>
+                                </div>
+                                <div class="ml-16 mt-2 flex flex-wrap gap-2">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusClasses(step.status)}">${step.status.charAt(0).toUpperCase() + step.status.slice(1)}</span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-surface-variant text-on-surface-variant">${step.quarter}</span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${typeStyle.bg} ${typeStyle.text}">${getSessionTypeLabel(step.sessionType)}</span>
+                                </div>
+                            </div>
+                            <svg class="chevron-icon w-6 h-6 text-on-surface-variant flex-shrink-0 mt-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <div class="pt-2 pb-6 px-6">
+                            <p class="text-base text-on-surface-variant mb-4"><strong>Format:</strong> ${step.format}</p>
+                            ${goalsHtml}
+                            ${whyThisMattersHtml}
+                            ${homeworkHtml}
+                            ${deliverableHtml}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(stepElement);
+            });
+
+            // Add accordion functionality
+            document.querySelectorAll('.step-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const parent = header.parentElement;
+                    const isExpanded = parent.classList.contains('expanded');
+
+                    // Close all
+                    document.querySelectorAll('#journey-steps-container .expanded').forEach(openItem => {
+                        openItem.classList.remove('expanded');
+                        openItem.querySelector('.step-header').setAttribute('aria-expanded', 'false');
+                    });
+
+                    // Toggle current
+                    if (!isExpanded) {
+                        parent.classList.add('expanded');
+                        header.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        }
+
+        // Navigation smooth scroll with active state
+        const navButtons = document.querySelectorAll('.nav-button');
+        const sections = ['context', 'cascade', 'timeline', 'journey'];
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    // Account for sticky header height
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update active nav based on scroll position
+        function updateActiveNav() {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            let currentSection = '';
+
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop - headerHeight - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+
+            navButtons.forEach(button => {
+                const targetId = button.getAttribute('data-target');
+                if (targetId === currentSection) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Throttled scroll listener
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                updateActiveNav();
+                scrollTimeout = null;
+            }, 50);
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCascadeNavigator();
+            renderCascadeDetail('aspiration');
+            renderCascadeAccordion();
+            renderJourneySteps();
+            updateActiveNav(); // Set initial active state
+        });
+    </script>
+
+</body>
+</html>
