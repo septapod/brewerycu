@@ -483,7 +483,13 @@
                     'States winning in concrete terms that inspire the team',
                     'Anchors every other strategic choice in the cascade'
                 ],
-                bcuContext: 'BCU becomes the institution that the community\'s support system sends people to by default. Social workers, nonprofits, and community organizations refer members to BCU by name. Concrete targets discussed: 30-50% market share in the neighborhoods we serve, recognized community partner, and the communities we serve showing real economic improvement over time.'
+                bcuContext: [
+                    'BCU becomes the institution that the community\'s support system sends people to by default',
+                    'Social workers, nonprofits, and community organizations refer members to BCU by name',
+                    '30-50% market share in the neighborhoods we serve',
+                    'Recognized community partner',
+                    'The communities we serve showing real economic improvement over time'
+                ]
             },
             {
                 id: 'where',
@@ -496,7 +502,12 @@
                     'Selects the delivery channels (branches, digital, partners)',
                     'Clarifies what you\'re <strong>not</strong> doing'
                 ],
-                bcuContext: 'Low-income individuals in CDFI-designated neighborhoods of Milwaukee\'s northwest side. Blemished credit, limited financial education, intergenerational poverty. In-branch (primary), online, phone. Second-chance checking, subprime lending, fast cash alternatives, financial counseling, emergency response products.'
+                bcuContext: [
+                    'Low-income individuals in CDFI-designated neighborhoods of Milwaukee\'s northwest side',
+                    'Blemished credit, limited financial education, intergenerational poverty',
+                    'Channels: In-branch (primary), online, phone',
+                    'Products: Second-chance checking, subprime lending, fast cash alternatives, financial counseling, emergency response products'
+                ]
             },
             {
                 id: 'how',
@@ -509,7 +520,14 @@
                     'BCU is clearly <strong>differentiation</strong>: you don\'t win on rates',
                     'Explains why the advantage will last over time'
                 ],
-                bcuContext: 'Differentiation through flexibility and humanity. Say yes when others say no. Fair pricing, flexible repayment, non-judgmental access. Proactively anticipate member needs (government shutdown response, Rocket Mortgage partnership). Products at thresholds others won\'t touch ($300 unsecured loans vs. $5,000 minimums elsewhere). Build trust that turns "last resort" into "first choice."'
+                bcuContext: [
+                    'Differentiation through flexibility and humanity',
+                    'Say yes when others say no',
+                    'Fair pricing, flexible repayment, non-judgmental access',
+                    'Proactively anticipate member needs (government shutdown response, Rocket Mortgage partnership)',
+                    'Products at thresholds others won\'t touch ($300 unsecured loans vs. $5,000 minimums elsewhere)',
+                    'Build trust that turns "last resort" into "first choice"'
+                ]
             },
             {
                 id: 'capabilities',
@@ -522,7 +540,13 @@
                     'Reinforce one another across the credit union',
                     'May reveal gaps between "what we need" and "what we have"'
                 ],
-                bcuContext: 'Strengths: Subprime loan structuring, relationship-based collections negotiation, risk management for higher-risk members, second-chance account opening, CDFI flexibility, small/fast decision-making. Gaps identified: marketing and awareness ("we don\'t do a good job explaining"), staff alignment with strategic direction, product positioning vs. payday alternatives.'
+                bcuContext: [
+                    '<strong>Strengths:</strong> Subprime loan structuring, relationship-based collections negotiation, risk management for higher-risk members',
+                    'Second-chance account opening, CDFI flexibility, small/fast decision-making',
+                    '<strong>Gaps:</strong> Marketing and awareness ("we don\'t do a good job explaining")',
+                    'Staff alignment with strategic direction',
+                    'Product positioning vs. payday alternatives'
+                ]
             },
             {
                 id: 'systems',
@@ -535,7 +559,12 @@
                     'Aligns resource allocation and incentives with priorities',
                     'Enables fast learning and course correction'
                 ],
-                bcuContext: 'Still emerging. The team found this the hardest question to answer. Early signals: Kristin described success as members buying homes, getting better jobs, and the communities BCU serves starting to improve economically. Current tracking focuses on loan growth and financial ratios. The gap between what BCU aspires to and what it actually measures is one of the key threads to pick up in future sessions.'
+                bcuContext: [
+                    'Still emerging. The team found this the hardest question to answer.',
+                    'Early signals: Kristin described success as members buying homes, getting better jobs, and communities improving economically',
+                    'Current tracking focuses on loan growth and financial ratios',
+                    'The gap between what BCU aspires to and what it actually measures is a key thread for future sessions'
+                ]
             }
         ];
 
@@ -826,8 +855,10 @@
                 </ul>
                 ${stage.bcuContext ? `
                     <div class="quote-highlight rounded-r-lg p-4 mt-4">
-                        <p class="text-base font-medium text-on-surface">BCU Context:</p>
-                        <p class="text-base text-on-surface-variant mt-1">${stage.bcuContext}</p>
+                        <p class="text-base font-medium text-on-surface mb-2">BCU Context:</p>
+                        <ul class="space-y-1.5">
+                            ${stage.bcuContext.map(b => `<li class="flex items-start"><span class="text-primary mr-2 mt-0.5 text-sm">•</span><span class="text-base text-on-surface-variant">${b}</span></li>`).join('')}
+                        </ul>
                     </div>
                 ` : ''}
             `;
@@ -869,7 +900,9 @@
                                 </ul>
                                 ${item.bcuContext ? `
                                     <div class="quote-highlight rounded-r-lg p-3">
-                                        <p class="text-sm text-on-surface-variant">${item.bcuContext}</p>
+                                        <ul class="space-y-1">
+                                            ${item.bcuContext.map(b => `<li class="flex items-start"><span class="text-primary mr-1.5 mt-0.5 text-xs">•</span><span class="text-sm text-on-surface-variant">${b}</span></li>`).join('')}
+                                        </ul>
                                     </div>
                                 ` : ''}
                             </div>
